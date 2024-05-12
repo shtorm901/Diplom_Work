@@ -10,14 +10,6 @@ class AddForm(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-
-        self.lineEdit.hide()
-        self.lineEdit_2.hide()
-        self.lineEdit_3.hide()
-        self.label.hide()
-        self.label_2.hide()
-        self.label_3.hide()
-        self.label_4.hide()
         self.tableWidget.hide()
         self.listWidget.show()
 
@@ -39,6 +31,8 @@ class AddForm(QtWidgets.QMainWindow, Ui_MainWindow):
     def selectedTable(self, item):
         self.listWidget.hide()
         self.tableWidget.show()
+        self.OK.show()
+        self.Cancel.show()
         con, cur = self.printData()
         if(item.text() == "Users"):
             self.label_4.setText("Users")

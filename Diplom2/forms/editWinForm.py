@@ -24,6 +24,8 @@ class EditForm(QtWidgets.QMainWindow, Ui_MainWindow):
         self.lineEdit_2.hide()
         self.lineEdit_3.hide()
         self.lineEdit_5.hide()
+        self.OK.hide()
+        self.Cancel.hide()
 
         self.printData()
 
@@ -44,6 +46,8 @@ class EditForm(QtWidgets.QMainWindow, Ui_MainWindow):
     def selectedTable(self, item):
         self.listWidget.hide()
         self.tableWidget.show()
+        self.OK.show()
+        self.Cancel.show()
         con, cur = self.printData()
         if (item.text() == "Users"):
             self.label_4.setText("Users")
@@ -208,10 +212,13 @@ class EditForm(QtWidgets.QMainWindow, Ui_MainWindow):
             login = self.lineEdit.text()
             password = self.lineEdit_2.text()
             try:
-                cur.execute("UPDATE Users SET (name, password) = (?, ?) WHERE id == (?)", (login, password, ids))
-                QtWidgets.QMessageBox.information(None, "Информация", "Пользователь был обновлен")
-                con.commit()
-                self.cancel()
+                cur.execute("SELECT * FROM Users WHERE id = ?", (ids))
+                for row in cur.fetchone():
+                    cur.execute("UPDATE Users SET (name, password) = (?, ?) WHERE id == (?)", (login, password, ids))
+                    QtWidgets.QMessageBox.information(None, "Информация", "Пользователь был обновлен")
+                    con.commit()
+                    self.cancel()
+                    break
             except Exception:
                 QtWidgets.QMessageBox.warning(None, "Ошибка", "Пользователь не найден, проверьте данные и попробуйте снова")
 
@@ -220,10 +227,13 @@ class EditForm(QtWidgets.QMainWindow, Ui_MainWindow):
             surname = self.lineEdit_2.text()
             post_id = self.lineEdit_3.text()
             try:
-                cur.execute("UPDATE Workers SET (name, surname, post_id) = (?, ?, ?) WHERE id == (?)", (name, surname, post_id, ids))
-                QtWidgets.QMessageBox.information(None, "Информация", "Работник был обновлен")
-                con.commit()
-                self.cancel()
+                cur.execute("SELECT * FROM Workers WHERE id = ?", (ids))
+                for row in cur.fetchone():
+                    cur.execute("UPDATE Workers SET (name, surname, post_id) = (?, ?, ?) WHERE id == (?)", (name, surname, post_id, ids))
+                    QtWidgets.QMessageBox.information(None, "Информация", "Работник был обновлен")
+                    con.commit()
+                    self.cancel()
+                    break
             except Exception:
                 QtWidgets.QMessageBox.warning(None, "Ошибка", "Работник не найден, проверьте данные и попробуйте снова")
 
@@ -231,10 +241,13 @@ class EditForm(QtWidgets.QMainWindow, Ui_MainWindow):
             name = self.lineEdit.text()
             salary = self.lineEdit_2.text()
             try:
-                cur.execute("UPDATE Post SET (name, salary) = (?, ?) WHERE id == (?)", (name, salary, ids))
-                QtWidgets.QMessageBox.information(None, "Информация", "Должность была обновлена")
-                con.commit()
-                self.cancel()
+                cur.execute("SELECT * FROM Post WHERE id = ?", (ids))
+                for row in cur.fetchone():
+                    cur.execute("UPDATE Post SET (name, salary) = (?, ?) WHERE id == (?)", (name, salary, ids))
+                    QtWidgets.QMessageBox.information(None, "Информация", "Должность была обновлена")
+                    con.commit()
+                    self.cancel()
+                    break
             except Exception:
                 QtWidgets.QMessageBox.warning(None, "Ошибка", "Должность не найдена, проверьте данные и попробуйте снова")
 
@@ -242,10 +255,13 @@ class EditForm(QtWidgets.QMainWindow, Ui_MainWindow):
             menu_id = self.lineEdit.text()
             user_id = self.lineEdit_2.text()
             try:
-                cur.execute("UPDATE Orders SET (menu_id, user_id) = (?, ?) WHERE id == (?)", (menu_id, user_id, ids))
-                QtWidgets.QMessageBox.information(None, "Информация", "Заказ был обновлен")
-                con.commit()
-                self.cancel()
+                cur.execute("SELECT * FROM Orders WHERE id = ?", (ids))
+                for row in cur.fetchone():
+                    cur.execute("UPDATE Orders SET (menu_id, user_id) = (?, ?) WHERE id == (?)", (menu_id, user_id, ids))
+                    QtWidgets.QMessageBox.information(None, "Информация", "Заказ был обновлен")
+                    con.commit()
+                    self.cancel()
+                    break
             except Exception:
                 QtWidgets.QMessageBox.warning(None, "Ошибка", "Заказ не найден, проверьте данные и попробуйте снова")
 
@@ -253,10 +269,13 @@ class EditForm(QtWidgets.QMainWindow, Ui_MainWindow):
             name = self.lineEdit.text()
             price = self.lineEdit_2.text()
             try:
-                cur.execute("UPDATE Menu SET (name, price) = (?, ?) WHERE id == (?)", (name, price, ids))
-                QtWidgets.QMessageBox.information(None, "Информация", "Продукт был обновлен")
-                con.commit()
-                self.cancel()
+                cur.execute("SELECT * FROM Menu WHERE id = ?", (ids))
+                for row in cur.fetchone():
+                    cur.execute("UPDATE Menu SET (name, price) = (?, ?) WHERE id == (?)", (name, price, ids))
+                    QtWidgets.QMessageBox.information(None, "Информация", "Продукт был обновлен")
+                    con.commit()
+                    self.cancel()
+                    break
             except Exception:
                 QtWidgets.QMessageBox.warning(None, "Ошибка", "Продукт не найден, проверьте данные и попробуйте снова")
 
@@ -265,10 +284,13 @@ class EditForm(QtWidgets.QMainWindow, Ui_MainWindow):
             address = self.lineEdit_2.text()
             phone_number = self.lineEdit_5.text()
             try:
-                cur.execute("UPDATE Cafe SET (name, address, telephone_number) = (?, ?, ?) WHERE id == (?)", (name, address, phone_number, ids))
-                QtWidgets.QMessageBox.information(None, "Информация", "Заказ был обновлен")
-                con.commit()
-                self.cancel()
+                cur.execute("SELECT * FROM Cafe WHERE id = ?", (ids))
+                for row in cur.fetchone():
+                    cur.execute("UPDATE Cafe SET (name, address, telephone_number) = (?, ?, ?) WHERE id == (?)", (name, address, phone_number, ids))
+                    QtWidgets.QMessageBox.information(None, "Информация", "Заказ был обновлен")
+                    con.commit()
+                    self.cancel()
+                    break
             except Exception:
                 QtWidgets.QMessageBox.warning(None, "Ошибка", "Заказ не найден, проверьте данные и попробуйте снова")
 

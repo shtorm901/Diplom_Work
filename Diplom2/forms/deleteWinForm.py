@@ -20,6 +20,8 @@ class DeleteForm(QtWidgets.QMainWindow, Ui_MainWindow):
         self.label_4.hide()
         self.tableWidget.hide()
         self.listWidget.show()
+        self.OK.hide()
+        self.Cancel.hide()
 
         self.printData()
 
@@ -40,6 +42,8 @@ class DeleteForm(QtWidgets.QMainWindow, Ui_MainWindow):
     def selectedTable(self, item):
         self.listWidget.hide()
         self.tableWidget.show()
+        self.OK.show()
+        self.Cancel.show()
         con, cur = self.printData()
         if (item.text() == "Users"):
             self.label_4.setText("Users")
@@ -152,52 +156,70 @@ class DeleteForm(QtWidgets.QMainWindow, Ui_MainWindow):
         con, cur = self.printData()
         self.tableName = self.label_4.text()
         ids = self.lineEdit.text()
-        if self.tableName == "Users":
+        if (self.tableName == "Users"):
             try:
-                cur.execute("DELETE FROM Users WHERE (id) == (?)", (ids))
-                QtWidgets.QMessageBox.information(None, "Информация", "Пользователь был удален")
-                con.commit()
-                self.cancel()
+                cur.execute("SELECT * FROM Users WHERE id = ?", (ids))
+                for row in cur.fetchone():
+                    cur.execute("DELETE FROM Users WHERE id = ?", (ids))
+                    QtWidgets.QMessageBox.information(None, "Информация", "Пользователь был удален")
+                    con.commit()
+                    self.cancel()
+                    break
             except Exception:
                 QtWidgets.QMessageBox.warning(None, "Ошибка", "Пользователь не найден, проверьте данные и попробуйте снова")
-        if self.tableName == "Workers":
+        if (self.tableName == "Workers"):
             try:
-                cur.execute("DELETE FROM Workers WHERE (id) == (?)", (ids))
-                QtWidgets.QMessageBox.information(None, "Информация", "Работник был удален")
-                con.commit()
-                self.cancel()
+                cur.execute("SELECT * FROM Workers WHERE id = ?", (ids))
+                for row in cur.fetchone():
+                    cur.execute("DELETE FROM Workers WHERE id = ?", (ids))
+                    QtWidgets.QMessageBox.information(None, "Информация", "Работник был удален")
+                    con.commit()
+                    self.cancel()
+                    break
             except Exception:
                 QtWidgets.QMessageBox.warning(None, "Ошибка", "Работник не найден, проверьте данные и попробуйте снова")
-        if self.tableName == "Menu":
+        if (self.tableName == "Menu"):
             try:
-                cur.execute("DELETE FROM Menu WHERE (id) == (?)", (ids))
-                QtWidgets.QMessageBox.information(None, "Информация", "Элемент меню был удален")
-                con.commit()
-                self.cancel()
+                cur.execute("SELECT * FROM Menu WHERE id = ?", (ids))
+                for row in cur.fetchone():
+                    cur.execute("DELETE FROM Menu WHERE id = ?", (ids))
+                    QtWidgets.QMessageBox.information(None, "Информация", "Элемент меню был удален")
+                    con.commit()
+                    self.cancel()
+                    break
             except Exception:
                 QtWidgets.QMessageBox.warning(None, "Ошибка", "Элемент меню не найден, проверьте данные и попробуйте снова")
-        if self.tableName == "Post":
+        if (self.tableName == "Post"):
             try:
-                cur.execute("DELETE FROM Post WHERE (id) == (?)", (ids))
-                QtWidgets.QMessageBox.information(None, "Информация", "Должность была удален")
-                con.commit()
-                self.cancel()
+                cur.execute("SELECT * FROM Post WHERE id = ?", (ids))
+                for row in cur.fetchone():
+                    cur.execute("DELETE FROM Post WHERE id = ?", (ids))
+                    QtWidgets.QMessageBox.information(None, "Информация", "Должность была удален")
+                    con.commit()
+                    self.cancel()
+                    break
             except Exception:
                 QtWidgets.QMessageBox.warning(None, "Ошибка", "Должность не найдена, проверьте данные и попробуйте снова")
-        if self.tableName == "Orders":
+        if (self.tableName == "Orders"):
             try:
-                cur.execute("DELETE FROM Orders WHERE (id) == (?)", (ids))
-                QtWidgets.QMessageBox.information(None, "Информация", "Заказ был удален")
-                con.commit()
-                self.cancel()
+                cur.execute("SELECT * FROM Orders WHERE id = ?", (ids))
+                for row in cur.fetchone():
+                    cur.execute("DELETE FROM Orders WHERE id = ?", (ids))
+                    QtWidgets.QMessageBox.information(None, "Информация", "Заказ был удален")
+                    con.commit()
+                    self.cancel()
+                    break
             except Exception:
                 QtWidgets.QMessageBox.warning(None, "Ошибка", "Заказ не найден, проверьте данные и попробуйте снова")
-        if self.tableName == "Cafe":
+        if (self.tableName == "Cafe"):
             try:
-                cur.execute("DELETE FROM Cafe WHERE (id) == (?)", (ids))
-                QtWidgets.QMessageBox.information(None, "Информация", "Кафе было удален")
-                con.commit()
-                self.cancel()
+                cur.execute("SELECT * FROM Cafe WHERE id = ?", (ids))
+                for row in cur.fetchone():
+                    cur.execute("DELETE FROM Cafe WHERE id = ?", (ids))
+                    QtWidgets.QMessageBox.information(None, "Информация", "Кафе было удален")
+                    con.commit()
+                    self.cancel()
+                    break
             except Exception:
                 QtWidgets.QMessageBox.warning(None, "Ошибка", "Кафе не найдено, проверьте данные и попробуйте снова")
 

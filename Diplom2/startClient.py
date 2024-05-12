@@ -7,7 +7,7 @@ import sys
 base_worker.set_base_path(Base)
 
 if not base_worker.base_check():
-    base_worker.create_base('sql.base.sql')
+    base_worker.create_base('sql/base.sql')
 
 
 if __name__ == "__main__":
