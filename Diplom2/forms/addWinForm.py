@@ -10,6 +10,14 @@ class AddForm(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.OK.hide()
+        self.Cancel.hide()
+        self.lineEdit.hide()
+        self.lineEdit_2.hide()
+        self.lineEdit_3.hide()
+        self.label.hide()
+        self.label_2.hide()
+        self.label_3.hide()
         self.tableWidget.hide()
         self.listWidget.show()
 

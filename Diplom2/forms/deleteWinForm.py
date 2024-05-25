@@ -44,6 +44,7 @@ class DeleteForm(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tableWidget.show()
         self.OK.show()
         self.Cancel.show()
+        self.label.setText("Id")
         con, cur = self.printData()
         if (item.text() == "Users"):
             self.label_4.setText("Users")
