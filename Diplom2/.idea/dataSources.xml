@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="cafe" uuid="0de21740-dba1-4d01-bdea-2fad05b6ff3e">
+    <data-source source="LOCAL" name="cafe" uuid="56b38bbf-3ebf-4aee-a5a1-b30d3a8cdab9">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:G:\Diplom2\cafe.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:E:\Diplom2\cafe.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>
